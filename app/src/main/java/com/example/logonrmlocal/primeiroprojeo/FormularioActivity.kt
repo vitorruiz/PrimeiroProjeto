@@ -1,7 +1,11 @@
 package com.example.logonrmlocal.primeiroprojeo
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import com.example.logonrmlocal.primeiroprojeo.extension.value
+import com.example.logonrmlocal.primeiroprojeo.utils.ConstantsExtra
 import kotlinx.android.synthetic.main.activity_formulario.*
 
 class FormularioActivity : AppCompatActivity() {
@@ -22,13 +26,19 @@ class FormularioActivity : AppCompatActivity() {
         btn_calcular.setOnClickListener {
 
             if (txt_peso.text.isNullOrEmpty() || txt_altura.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Todos os campos são obrigatórios", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val peso = txt_peso.text.toString().toDouble()
-            val altura = txt_altura.text.toString().toDouble()
-
-            txt_imc.text = "Seu IMC é: ${(peso / (altura * altura)) * 10000}"
+            chamaTelaResultado()
         }
+    }
+
+    private fun chamaTelaResultado() {
+        var i = Intent(this, ResultadoActivity::class.java)
+        i.putExtra(ConstantsExtra.KEY_PESO, txt_peso.value())
+        i.putExtra(ConstantsExtra.KEY_ALTURA, txt_altura.value())
+
+        startActivity(i)
     }
 }

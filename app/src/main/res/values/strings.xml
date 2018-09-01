@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PrimeiroProjeo</string>
+    <string name="label_your_imc">Seu IMC é</string>
+    <string name="label_developed_by">Desenvolvido por Vitor Ruiz</string>
 </resources>
