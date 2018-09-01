@@ -13,6 +13,8 @@ class ResultadoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val peso = intent.extras.getString(ConstantsExtra.KEY_PESO).toDouble()
         val altura = intent.extras.getString(ConstantsExtra.KEY_ALTURA).toDouble()
 
@@ -58,5 +60,10 @@ class ResultadoActivity : AppCompatActivity() {
 
     private fun setIMCImage(resId: Int) {
         imvIMC.setImageDrawable(ContextCompat.getDrawable(this, resId))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
